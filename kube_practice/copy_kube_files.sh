@@ -12,16 +12,11 @@ for ff in "$@"; do
     chmod +x "$ff"
 done
 
-UBPRTC='/Users/papa/spaces/ubprtc/kube_practice'
+DEST_HOST='dev1'
+DEST_DIR='/media/papa/surplus/spaces/workspace/kube_practice'
+for ff in "$@"; do
+    if [[ -f $ff ]]; then
+        scp "$ff" $DEST_HOST:$DEST_DIR
+    fi
+done 
 
-if [[ $(df | grep -c ubprtc) == 1 ]]; then
-    for ff in "$@"; do
-        cp -fv "$ff" "$UBPRTC"
-    done
-elif [[ -d "$UBPRTC" ]]; then
-    for ff in "$@"; do
-        cp -fv "$ff" "$UBPRTC"
-    done
-else
-    echo "Can't copy to $UBPRTC"
-fi
