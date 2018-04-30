@@ -21,7 +21,7 @@ kubectl proxy  --port=9091 > proxy.log &
 # verify
 curl http://127.0.0.1:9091/version
 
-log_section 'proxy creation'
+log_section 'proxy test'
 
 export POD_NAME=$(kubectl get pods -o go-template \
                     --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
