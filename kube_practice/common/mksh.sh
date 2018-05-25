@@ -5,5 +5,5 @@ for f in "$@"; do
     touch "$fsh" && chmod +x "$fsh"
     echo "#!/bin/bash" >> "$fsh"
     echo " " >> "$fsh"
-    echo "source colors.sh" >> "$fsh"
+    echo "source kube_practice/common/colors.sh" >> "$fsh"
 done

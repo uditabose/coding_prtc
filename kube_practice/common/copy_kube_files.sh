@@ -7,15 +7,11 @@ if [[ -z "${ARGS// }" ]]; then
     exit -1
 fi
 
-# change file permission
-for ff in "$@"; do
-    chmod +x "$ff"
-done
-
 DEST_HOST='dev1'
-DEST_DIR='/media/papa/surplus/spaces/workspace/kube_practice'
+DEST_DIR='/home/papa/spaces/workspace/kube_practice'
 for ff in "$@"; do
     if [[ -f $ff ]]; then
+        chmod +x "$ff"
         scp "$ff" $DEST_HOST:$DEST_DIR
     fi
 done 

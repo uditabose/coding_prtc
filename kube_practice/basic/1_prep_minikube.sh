@@ -2,12 +2,12 @@
  
 # install minikube with dependencies
 
-source colors.sh
+source ../common/colors.sh
 
 log_header 'minikube install'
 
-PRE_INSTALL='pre_install.sh'
-INSTALL='minikube_install.sh'
+PRE_INSTALL='2_pre_install.sh'
+INSTALL='3_minikube_install.sh'
 POST_INSTALL=''
 
 # pre minikube installation

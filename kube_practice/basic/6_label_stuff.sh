@@ -1,6 +1,6 @@
 #!/bin/bash
  
-source colors.sh
+source ../common/colors.sh
 
 log_header 'label stuff'
 
