@@ -1,0 +1,1 @@
+sudo kubeadm join 192.168.0.35:6443 --token skgnas.muabxvtdb4cino4a --discovery-token-ca-cert-hash sha256:9e36078a711d7b272aa5499c553a196da5f2916d7af691c87699ac9c39389545
