@@ -1,0 +1,2 @@
+0359f018a81a95415db43a3a2c0ed9a4  lfd259-example-files.tar
+480a1fc6ad4dd889bb3532b130fddc4a  ready-for.sh
