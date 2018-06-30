@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PATH=".:$PATH"
+echo "my ls"
+ls

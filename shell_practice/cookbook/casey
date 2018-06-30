@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "no of args : $#"
+echo
+echo "all args : $@"
+echo 
+echo "script : $0"
+echo
+echo "pid : $$"
+echo
+which blah
+echo
+echo "last : $?"
+echo
+echo "all options : $-"

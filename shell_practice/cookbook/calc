@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function calc {
+	awk "BEGIN {print \"The answer is: \" $* }";
+}
+
+calc "$@"
