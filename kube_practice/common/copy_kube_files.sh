@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source colors.sh
+
+log_header "copying files to kubernetes machines"
+
 ARGS="$@"
 
 if [[ -z "${ARGS// }" ]]; then
@@ -7,12 +11,18 @@ if [[ -z "${ARGS// }" ]]; then
     exit -1
 fi
 
-DEST_HOST='dev1'
+MASTER='kbprtc'
+SLAVE1='kbmin1'
+SLAVE2='kbmin2'
+
 DEST_DIR='/home/papa/spaces/workspace/kube_practice'
 for ff in "$@"; do
     if [[ -f $ff ]]; then
         chmod +x "$ff"
-        scp "$ff" $DEST_HOST:$DEST_DIR
+        log_warning "copying $ff"
+        scp "$ff" $MASTER:$DEST_DIR
+        scp "$ff" $SLAVE1:$DEST_DIR
+        scp "$ff" $SLAVE2:$DEST_DIR
     fi
 done 
 

@@ -1,12 +1,19 @@
 #!/bin/bash
  
-source ../common/colors.sh
+#source ../common/colors.sh
+source colors.sh
 
 SERVER_TYPE="$1"
 
 if [[ -z "$SERVER_TYPE" ]]; then
     SERVER_TYPE="master"
 fi
+
+# shut up all swaps
+sudo swapoff --all
+
+hashtoken=$(echo -n 'kube_practice' | md5sum | awk '{print $1}')
+token="$(echo -n $hashtoken | cut -c 1-6).$(echo -n $hashtoken | cut -c 1-16)"
 
 if [[ "$SERVER_TYPE" = "master" ]]; then
     docker_status=$(systemctl status docker | grep active | grep -c running)
@@ -17,16 +24,10 @@ if [[ "$SERVER_TYPE" = "master" ]]; then
     fi
 
     log "starting kube master"
-    sudo kubeadm init > kube-init 2>&1
+    sudo kubeadm init --token "$token" --ignore-preflight-errors=all  > kube-init 2>&1 &
 
 elif [[ "$SERVER_TYPE" = "slave" ]]; then
-    if [[ -f "join_node" ]]; then
-        slave_command=$(cat "join_node")
-        $($slave_command)
-
-    else
-        log_error "no command found to join node"
-    fi
+    sudo kubeadm join 192.168.0.35:6443 --token "$token"
 else
     log_error "It can be only master or slave types of servers"
 fi

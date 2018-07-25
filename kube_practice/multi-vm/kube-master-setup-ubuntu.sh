@@ -5,7 +5,8 @@
 # @ref : https://medium.com/@Grigorkh/install-kubernetes-on-ubuntu-1ac2ef522a36
 # @ref : https://medium.com/@sachin.arote1/installing-kubernetes-on-bare-metal-server-or-virtual-machine-via-kubeadm-8af39ec84562
 
-source ../common/colors.sh
+#source ../common/colors.sh
+source colors.sh
 
 log_header 'installing kubernetes master'
 

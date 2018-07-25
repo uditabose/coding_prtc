@@ -13,7 +13,7 @@ Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 
 log() {
-    echo "$@"
+    echo -e $Purple"$@\n"$Color_Off
 }
 
 log_error() {

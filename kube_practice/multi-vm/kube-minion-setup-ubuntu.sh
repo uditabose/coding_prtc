@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ../common/colors.sh
+#source ../common/colors.sh
+source colors.sh
 
 log_header 'installing kubernetes master'
 
