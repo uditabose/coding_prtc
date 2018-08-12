@@ -5,6 +5,8 @@
 *.dll
 *.so
 *.dylib
+*.jar
+*.class
 
 # Test binary, build with `go test -c`
 *.test
@@ -17,6 +19,12 @@
 
 # Golang project vendor packages which should be ignored
 vendor/
+
+# eclipse
+target/
+.settings/
+.classpath
+.project
 
 ### SublimeText ###
 # cache files for sublime text

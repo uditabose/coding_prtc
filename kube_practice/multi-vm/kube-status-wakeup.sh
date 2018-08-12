@@ -14,6 +14,7 @@ sudo swapoff --all
 
 hashtoken=$(echo -n 'kube_practice' | md5sum | awk '{print $1}')
 token="$(echo -n $hashtoken | cut -c 1-6).$(echo -n $hashtoken | cut -c 1-16)"
+log "kubernetes token : $token"
 
 if [[ "$SERVER_TYPE" = "master" ]]; then
     docker_status=$(systemctl status docker | grep active | grep -c running)
@@ -27,7 +28,8 @@ if [[ "$SERVER_TYPE" = "master" ]]; then
     sudo kubeadm init --token "$token" --ignore-preflight-errors=all  > kube-init 2>&1 &
 
 elif [[ "$SERVER_TYPE" = "slave" ]]; then
-    sudo kubeadm join 192.168.0.35:6443 --token "$token"
+    log "starting kube slave"
+    sudo kubeadm join 192.168.0.35:6443 --token "$token" --discovery-token-unsafe-skip-ca-verification --ignore-preflight-errors=all  > kube-init 2>&1 &
 else
     log_error "It can be only master or slave types of servers"
 fi

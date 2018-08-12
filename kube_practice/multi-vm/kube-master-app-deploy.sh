@@ -59,7 +59,7 @@ CMD ["python", "simple.py"]
 EOF
 
 # build container
-sudo docker build -t simpleapp
+sudo docker build -t simpleapp .
 
 # verify image
 sudo docker images
@@ -157,11 +157,13 @@ sudo kompose convert -f docker-compose.yaml -o localregistry.yaml
 
 # verify
 cat localregistry.yaml
+kubectl create -f localregistry.yaml
+
 kubectl get pods, svc, pvc, pv, deploy
-sudo systemctl restart docker.service
+#sudo systemctl restart docker.service
 
 #
-sudo docker pull ubuntu
+#sudo docker pull ubuntu
 
 
 
