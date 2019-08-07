@@ -7,9 +7,9 @@
 # @author papa
 ####################################
 
-if [[ ! -d "$1" ]]; then
-    mkdir -p "$1"
-fi
+# if [[ ! -d "$1" ]]; then
+#     mkdir -p "$1"
+# fi
 
 if [[ ! -d "$1" ]]; then
     mkdir -pv "$1"
