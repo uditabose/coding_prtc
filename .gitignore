@@ -63,7 +63,10 @@ GitHub.sublime-settings
 # macos
 .DS_Store
 
-# custom 
+# custom
 \._*.*
 \._\.*
 \._*
+
+# node
+node_modules/
