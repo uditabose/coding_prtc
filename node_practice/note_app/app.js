@@ -1,9 +1,15 @@
 
 
-const name = require('./util.js')
+const runStuff = false;
 
-console.log(name)
+if(runStuff) {
+  const name = require('./util.js')
 
-const valid = require('./valid.js')
+  console.log(name)
 
-const chalk = require('./chalk.js')
+  const valid = require('./valid.js')
+
+  const chalk = require('./chalk.js')
+}
+
+const yargsy = require('./yargsy.js')
