@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 const getNotes = function() {
   return 'Your notes...'
@@ -15,9 +16,9 @@ const addNotes = function(title, body) {
       body: body
     })
     saveNotes(notes)
-    console.log("Note added with title", title)
+    console.log(chalk.green("Note added with title", title))
   } else {
-    console.log("Duplicate note title")
+    console.log(chalk.red("Duplicate note title"))
   }
 }
 
@@ -28,10 +29,10 @@ const removeNote = function(title) {
   })
 
   if (notes.length === restOfNotes.length) {
-    console.log("No matching note found")
+    console.log(chalk.red("No matching note found"))
   } else {
     saveNotes(restOfNotes)
-    console.log("Removed note with title", title)
+    console.log(chalk.green("Removed note with title", title))
   }
 }
 

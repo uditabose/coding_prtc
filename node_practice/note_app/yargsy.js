@@ -1,6 +1,7 @@
 const yargsy = require('yargs')
 const notes = require('./notes.js')
 
+
 yargsy.command({
   command: 'list',
   describe: 'List your notes',
