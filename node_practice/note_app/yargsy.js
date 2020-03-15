@@ -1,4 +1,5 @@
 const yargsy = require('yargs')
+const notes = require('./notes.js')
 
 yargsy.command({
   command: 'list',
@@ -31,17 +32,23 @@ yargsy.command({
     }
   },
   handler: function(argv) {
-    console.log('Note added:', argv.title, 'with body:', argv.body)
+    notes.addNotes(argv.title, argv.body)
   }
 })
 
 yargsy.command({
   command: 'remove',
   describe: 'Remove a note',
-  handler: function() {
-    console.log('Remove a note')
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function(argv) {
+    notes.removeNote(argv.title)
   }
 })
 
-// console.log(yargsy.argv)
-yargsy.parse()
+module.exports = yargsy
