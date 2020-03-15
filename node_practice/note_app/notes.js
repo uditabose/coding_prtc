@@ -1,32 +1,42 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = function() {
-  return 'Your notes...'
+const getNotes = () => {
+  loadNotes().forEach((note, i) => {
+    console.log(chalk.yellow("Note:", i+1, "#", "with title:", note.title))
+  });
 }
 
-const addNotes = function(title, body) {
+const readNote = (title) => {
   const notes = loadNotes()
-  const duplicateNotes = notes.filter(function(note) {
-    return note.title === title
-  })
-  if (duplicateNotes.length === 0) {
+  const theNote = notes.find((note) => note.title === title)
+  if(theNote) {
+    console.log(chalk.yellow("Note:", title, "---"))
+    console.log(chalk.green(theNote.body))
+  } else {
+    console.log(chalk.red("No note with title", title, "found"))
+  }
+}
+
+const addNotes = (title, body) => {
+  const notes = loadNotes()
+  const theNote = notes.find((note) => note.title === title)
+
+  if (theNote) {
+    console.log(chalk.red("Duplicate note title", title))
+  } else {
     notes.push({
       title: title,
       body: body
     })
     saveNotes(notes)
     console.log(chalk.green("Note added with title", title))
-  } else {
-    console.log(chalk.red("Duplicate note title"))
   }
 }
 
-const removeNote = function(title) {
+const removeNote = (title) => {
   const notes = loadNotes()
-  const restOfNotes = notes.filter(function(note){
-    return note.title !== title
-  })
+  const restOfNotes = notes.filter((note) => note.title !== title)
 
   if (notes.length === restOfNotes.length) {
     console.log(chalk.red("No matching note found"))
@@ -36,12 +46,12 @@ const removeNote = function(title) {
   }
 }
 
-const saveNotes = function(notes) {
+const saveNotes = (notes) => {
   const noteString = JSON.stringify(notes)
   fs.writeFileSync('notes.json', noteString)
 }
 
-const loadNotes = function() {
+const loadNotes = () => {
   try {
     const dataBuffer = fs.readFileSync('notes.json')
     const dataJSON = dataBuffer.toString()
@@ -54,5 +64,6 @@ const loadNotes = function() {
 module.exports = {
   getNotes: getNotes,
   addNotes: addNotes,
-  removeNote: removeNote
+  removeNote: removeNote,
+  readNote: readNote
 }

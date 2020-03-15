@@ -5,16 +5,16 @@ const notes = require('./notes.js')
 yargsy.command({
   command: 'list',
   describe: 'List your notes',
-  handler: function() {
-    console.log('Listing all notes')
+  handler: () => {
+    notes.getNotes()
   }
 })
 
 yargsy.command({
   command: 'read',
   describe: 'Read a notes',
-  handler: function() {
-    console.log('Read a note')
+  handler: (argv) => {
+    notes.readNote(argv.title)
   }
 })
 
